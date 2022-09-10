@@ -732,7 +732,7 @@ class compression:
                                     File_size_divide=0
                                     File_size_dividel=1
 
-                                    block_stop=int(size_data3,2)
+                                    block_stop=int(size_data3[:40],2)
                                     size_data3=size_data3[40:]
                                     
                                     if size_data3[0:8]=="00000000":
