@@ -217,9 +217,10 @@ class compression:
                                 size_data19=""
                                 size_data10=size_data3
                            
-                                
-                                long_block=16
                                 Check_equal=0
+                                long_block=16
+                                block_stop=0
+                            
                                
                                
                                 
@@ -317,7 +318,7 @@ class compression:
                                                                                 Size_max_zeroes=len(MAX_zeroes)
                                                                                 
                                                                                 lenf=len(add_bits118)
-                                                                                size_data26=bin(lenf-1)[2:]
+                                                                                size_data26=bin(lenf)[2:]
                                                                                 lenf=len(size_data26)
                                                                                 if lenf>Size_max_zeroes:
                                                                                     print("File too big")
@@ -405,25 +406,31 @@ class compression:
                                                                                     
 
 
-                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data8[0:2]=="11":
+                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data8[0:2]=="11" and Check_equal==1:
                                                                                     size_data4="10"+size_data8[2:]
                                                                                     #print(size_data4)
                                                                                     
-                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data7[0:2]=="11":
+                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data7[0:2]=="11" and Check_equal==1:
                                                                                     size_data4="11"+size_data7[2:]
                                                                                     #print(size_data4)
                                                                                     
                                                                                 else:
                                                                                      Separate3=Zeroes[::-1]
                                                                                      size_data4=Zeroes[::-1]
+                                                                         
                                                                                      if Separate3[0:1]=="1":
-                                                                                     	if Seperate==1 and size_data8[0:2]=="11":
+                                                                                     	if Seperate==1 and size_data8[0:2]=="11" and Check_equal==0:
                                                                                      		size_data4="10"+size_data8[2:]
-                                                                                     	if Seperate==0 and size_data7[0:2]=="11":
+                                                                                     	if Seperate==0 and size_data7[0:2]=="11" and Check_equal==0:
                                                                                                 size_data4="11"+size_data7[2:]				
     
-                                                                                     	if    size_data7[0:2]!="11" or  size_data8[0:2]!="11":
+                                                                                     	if    size_data7[0:2]!="11"  and Check_equal==0 or size_data8[0:2]!="11" and Check_equal==0:
                                                                                                 Check_equal=1
+                                                                                                block_stop=block
+                                                                                                #print(size_data4)
+   
+                                                                                                
+ 
                                                                                      		                                                                
                                                                                 size_data6=size_data6+size_data4       
                                                                                 block=block+blocks
@@ -453,7 +460,7 @@ class compression:
 
                                         
                                         
-                                        Check_equal=0
+                                    
 
                                         
                                             
@@ -496,18 +503,19 @@ class compression:
                                     
                                   
                                           
-                                    if File_size_Divide==0 and Check_equal!=1:
+                                    if File_size_Divide==0:
                                         	size_data11="11111111"+size_data11
-                                    elif File_size_Divide==1 and Check_equal!=1:
+                                    elif File_size_Divide==1:
                                          	size_data11="11111110"+size_data11+Size14
                                         
-                                    elif	Check_equal==1:
-                                            size_data11="00000000"+size_data_not_compress
+                                    
                                             
-                                            
+                                                                                            
                                             
                                 
-                                    
+                                    b=format(block_stop,'040b')
+                                    size_data11=b+size_data11
+                                     
                                  
                                     
                                     
