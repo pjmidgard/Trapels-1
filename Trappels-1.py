@@ -590,7 +590,7 @@ class compression:
                     
                     
                     
-                    Deep_long=120
+                    Deep_long=9999999999999
                     Deep_long_All=Deep_long*16
                     block_size_long=16
                     Times_compression=1
@@ -836,23 +836,17 @@ class compression:
                                                                                 block2=block
                                                                                 
                                                                                 if File_size_dividel==1:
-                                                                                    Zeroes=size_data3[block:block+1]
+                                                                                    Zeroes=size_data3[block:block+2]
                                                                                     Zeroes12=size_data3[block:block+3]
                                                                                     Zeroes2=size_data3[block+1:block+blocks+1]
                                                                                     Zeroes5=size_data3[block:block+blocks]
                                                                                     size_after2=len(Zeroes5)
 
-                                                                                    if Times6>Deep_long or size_after2!=long_block and Times6>Deep_long:
-                                                                                        Zeroes4=size_data3[block:block+blocks]
-                                                                                        size_after4=len(Zeroes4)
-                                                                                        size_data4=Zeroes4
-
-                                                                                        block=block+size_after4
                                                                                         
 
                                                                                         
-                                                                                    elif Zeroes=="0" and size_after2==long_block and Times6<=Deep_long:
-                                                                                        block=block+1
+                                                                                    if Zeroes[0:2]=="10":
+                                                                                        block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
                                                                                         #print(size_of_block)
@@ -864,7 +858,7 @@ class compression:
 
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
-                                                                                        Times_extract_of_time_zeroes=size_data3[block:block+Size_max_zeroes]
+                                                                                        Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
                                                                                         #print(Times_extract_of_time_zeroes)
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
@@ -877,9 +871,11 @@ class compression:
                                                                                         Forty_bits=long_block
                                                                                         Times_bits=Forty_bits-times_of_times
                                                                                         
-                                                                                        block=block+Size_max_zeroes
+                                                                                        block=block+(Size_max_zeroes-2)
                                                                                         
                                                                                         size_data8=size_data3[block:block+Times_bits]
+                                                                                        size_data8="11"+size_data8
+                                                                                       
                                                                                         
                                                                                         
                                                                                         
@@ -916,9 +912,15 @@ class compression:
                                                                                         #print(Times_bits3)
                                                                                         #print("T")
                                                                                         block=block+Times_bits
+                                                                                             
+                                                                                    elif Zeroes[0:1]=="0":
+                                                                                                                                                                                 	Zeroes10=size_data3[block:block+blocks]
+                                                                                                                                                                                 	size_data4=Zeroes10
+                                                                                                                                                                                 	
+                                                                                                                                                                                 	block=block+blocks
 
-                                                                                    elif Zeroes=="1" and size_after2==long_block and Times6<=Deep_long:
-                                                                                        block=block+1
+                                                                                    elif Zeroes[0:2]=="10":
+                                                                                        block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
                                                                                         #print(size_of_block)
@@ -930,7 +932,7 @@ class compression:
 
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
-                                                                                        Times_extract_of_time_zeroes=size_data3[block:block+Size_max_zeroes]
+                                                                                        Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
                                                                                         #print(Times_extract_of_time_zeroes)
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
@@ -945,9 +947,10 @@ class compression:
                                                                                         Forty_bits=long_block
                                                                                         Times_bits=Forty_bits-times_of_times
                                                                                         
-                                                                                        block=block+Size_max_zeroes
+                                                                                        block=block+(Size_max_zeroes-2)
                                                                                         
                                                                                         size_data8=size_data3[block:block+Times_bits]
+                                                                                        size_data8="11"+size_data8
 
 
                                                                                         size_data24=size_data8
