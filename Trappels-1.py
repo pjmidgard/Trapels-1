@@ -425,9 +425,11 @@ class compression:
                                                                                      if Separate3[0:1]=="1":
                                                                                      	if Seperate==1 and size_data8[0:2]=="11":
                                                                                      		size_data4="10"+size_data8[2:]
-                                                                                     	if Seperate==0 and size_data7[0:2]=="11":				size_data4="11"+size_data7[2:]
+                                                                                     	if Seperate==0 and size_data7[0:2]=="11":
+                                                                                                size_data4="11"+size_data7[2:]				
+    
                                                                                      	if    size_data7[0:2]!="11" or  size_data8[0:2]!="11":
-                                                                                     			                                                                                   Check_equal=1
+                                                                                                Check_equal=1
                                                                                      		                                                                
                                                                                 size_data6=size_data6+size_data4       
                                                                                 block=block+blocks
