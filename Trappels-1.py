@@ -56,7 +56,7 @@ class compression:
                     
                    
                     
-                    Deep_long=9999999999999
+                    Deep_long=999999999999999999999999
                     Deep_long_All=Deep_long*16
                     block_size_long=16
                     Times_compression=1
@@ -104,7 +104,7 @@ class compression:
                         data1=data
                         size_after2=len(data)
                         #print(size_after2)
-                        if len(data)==0:
+                        if len(data)==0 and len(data)>=(999999999999999999999999*16)+1:
                             x4=0.0
                             print(x4)
                             raise SystemExit
@@ -590,7 +590,7 @@ class compression:
                     
                     
                     
-                    Deep_long=9999999999999
+                    Deep_long=999999999999999999999999
                     Deep_long_All=Deep_long*16
                     block_size_long=16
                     Times_compression=1
