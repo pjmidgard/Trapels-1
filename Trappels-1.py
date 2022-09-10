@@ -502,7 +502,7 @@ class compression:
                                          	size_data11="11111110"+size_data11+Size14
                                         
                                     elif	Check_equal==1:
-                                            size_data11="000000"+size_data_not_compress
+                                            size_data11="00000000"+size_data_not_compress
                                             
                                             
                                             
