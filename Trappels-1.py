@@ -405,11 +405,11 @@ class compression:
                                                                                     
 
 
-                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data7[0:2]=="11":
+                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data8[0:2]=="11":
                                                                                     size_data4="10"+size_data8[2:]
                                                                                     #print(size_data4)
                                                                                     
-                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data8[0:2]=="11":
+                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data7[0:2]=="11":
                                                                                     size_data4="11"+size_data7[2:]
                                                                                     #print(size_data4)
                                                                                     
