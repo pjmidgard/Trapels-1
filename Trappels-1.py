@@ -9,12 +9,6 @@ name=""
 szx=""
 wer=""
 namez = input("c: compress or e: extract? ")
-
-
-
-
-
-
 #@Author Jurijus pacalovas
 class compression:
 	
