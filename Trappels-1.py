@@ -847,8 +847,13 @@ class compression:
 
                                                                                         
 
+                                                                                    if Zeroes[0:1]=="0":
+                                                                                        Zeroes10=size_data3[block:block+blocks]
+                                                                                        size_data4=Zeroes10
+                                                                                                                                                                                 	
+                                                                                        block=block+blocks
                                                                                         
-                                                                                    if Zeroes[0:2]=="10":
+                                                                                    elif Zeroes[0:2]=="10":
                                                                                         block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
@@ -922,7 +927,7 @@ class compression:
                                                                                                                                                                                  	
                                                                                         block=block+blocks
 
-                                                                                    elif Zeroes[0:2]=="10":
+                                                                                    elif Zeroes[0:2]=="11":
                                                                                         block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
