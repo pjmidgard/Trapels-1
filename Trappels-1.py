@@ -727,9 +727,12 @@ class compression:
                                     
 
                                     
-
+                                    if size_data3[0:8]=="00000000":
+                                    	size_data3=size_data3[8:]
+                                    	size_data12=size_data3
+                                    	Limit=1
                                     
-                                    if size_data3[0:8]=="11111111":
+                                    elif size_data3[0:8]=="11111111":
                                         size_data3=size_data3[8:]
                                     elif size_data3[0:8]=="11111110":
                                         size_data3=size_data3[8:]
