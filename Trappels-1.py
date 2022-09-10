@@ -859,7 +859,7 @@ class compression:
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
                                                                                         Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
-                                                                                        #print(Times_extract_of_time_zeroes)
+                                                                                        Times_extract_of_time_zeroes="11"+Times_extract_of_time_zeroes
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
                                                                                         
@@ -874,7 +874,7 @@ class compression:
                                                                                         block=block+(Size_max_zeroes-2)
                                                                                         
                                                                                         size_data8=size_data3[block:block+Times_bits]
-                                                                                        size_data8="11"+size_data8
+                                                                                        
                                                                                        
                                                                                         
                                                                                         
@@ -933,6 +933,7 @@ class compression:
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
                                                                                         Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
+                                                                                        Times_extract_of_time_zeroes="11"+Times_extract_of_time_zeroes
                                                                                         #print(Times_extract_of_time_zeroes)
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
@@ -950,7 +951,7 @@ class compression:
                                                                                         block=block+(Size_max_zeroes-2)
                                                                                         
                                                                                         size_data8=size_data3[block:block+Times_bits]
-                                                                                        size_data8="11"+size_data8
+                                                                                       
 
 
                                                                                         size_data24=size_data8
