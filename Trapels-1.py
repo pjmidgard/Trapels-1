@@ -732,8 +732,8 @@ class compression:
                                     File_size_divide=0
                                     File_size_dividel=1
 
-                                    
-
+                                    block_stop=int(size_data3,2)
+                                    size_data3=size_data3[40:]
                                     
                                     if size_data3[0:8]=="00000000":
                                     	size_data3=size_data3[8:]
@@ -852,16 +852,18 @@ class compression:
                                                                                     Zeroes2=size_data3[block+1:block+blocks+1]
                                                                                     Zeroes5=size_data3[block:block+blocks]
                                                                                     size_after2=len(Zeroes5)
+                                                                                    if block_stop>=block:                                                                                        
+                                                                                                                                                                                 Zeroes10=size_data3[block:block+blocks]
+                                                                                                                                                                                 size_data4=Zeroes10
+                                                                                                                                                                                 block=block+blocks
 
-                                                                                        
-
-                                                                                    if Zeroes[0:1]=="0":
+                                                                                    elif Zeroes[0:1]=="0" and block_stop<block:
                                                                                         Zeroes10=size_data3[block:block+blocks]
                                                                                         size_data4=Zeroes10
                                                                                                                                                                                  	
                                                                                         block=block+blocks
                                                                                         
-                                                                                    elif Zeroes[0:2]=="10":
+                                                                                    elif Zeroes[0:2]=="10" and block_stop<block:
                                                                                         block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
@@ -932,7 +934,8 @@ class compression:
                                                                                                                                    	
                                                                                         
 
-                                                                                    elif Zeroes[0:2]=="11":
+                                                                                    elif Zeroes[0:2]=="11" and block_stop<block:
+                                                                                    
                                                                                         block=block+2
                                                                                     
                                                                                         size_of_block=len(Zeroes)
@@ -950,7 +953,7 @@ class compression:
                                                                                         #print(Times_extract_of_time_zeroes)
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
-                                                                                        times_of_times=times_of_times+1
+                                                                                        
                                                                                         
                                                                                         
                                                                                     
