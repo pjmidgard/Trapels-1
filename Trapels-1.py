@@ -406,27 +406,31 @@ class compression:
                                                                                     
 
 
-                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data8[0:2]=="11" and Check_equal==1:
+                                                                                elif size_of_block>size_after_block2+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==1 and size_data8[0:2]=="00" and Check_equal==0:
                                                                                     size_data4="10"+size_data8[2:]
                                                                                     #print(size_data4)
                                                                                     
-                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data7[0:2]=="11" and Check_equal==1:
+                                                                                elif size_of_block>size_after_block+2 and Times6<=Deep_long and size_of_block==long_block and Seperate==0 and size_data7[0:2]=="00" and Check_equal==0:
                                                                                     size_data4="11"+size_data7[2:]
                                                                                     #print(size_data4)
                                                                                     
                                                                                 else:
                                                                                      Separate3=Zeroes[::-1]
                                                                                      size_data4=Zeroes[::-1]
+                                                                                     #print(size_data4)
                                                                          
                                                                                      if Separate3[0:1]=="1":
-                                                                                     	if Seperate==1 and size_data8[0:2]=="11" and Check_equal==0:
+                                                                                     	if Seperate==1 and size_data8[0:2]=="00" and Check_equal==0:
                                                                                      		size_data4="10"+size_data8[2:]
-                                                                                     	if Seperate==0 and size_data7[0:2]=="11" and Check_equal==0:
+                                                                                     	if Seperate==0 and size_data7[0:2]=="00" and Check_equal==0:
                                                                                                 size_data4="11"+size_data7[2:]				
     
-                                                                                     	if    size_data7[0:2]!="11"  and Check_equal==0 or size_data8[0:2]!="11" and Check_equal==0:
+                                                                                     	if    size_data7[0:2]!="00"  and Check_equal==0 or size_data8[0:2]!="00" and Check_equal==0:
                                                                                                 Check_equal=1
-                                                                                                block_stop=block
+                                                                                                
+                                                                                                block_stop=block//16
+                                                                                                #print(block_stop)
+                                                                                                
                                                                                                 #print(size_data4)
    
                                                                                                 
@@ -733,6 +737,7 @@ class compression:
                                     File_size_dividel=1
 
                                     block_stop=int(size_data3[:40],2)
+                                    print(block_stop)
                                     size_data3=size_data3[40:]
                                     
                                     if size_data3[0:8]=="00000000":
@@ -798,6 +803,7 @@ class compression:
                                     Left_Right=0
                                     Find_guess=0
                                     times_of_times1=0
+                                    block_stop2=0
                                         
                                     while  times_of_times1!=Times_compression:
 
@@ -852,19 +858,24 @@ class compression:
                                                                                     Zeroes2=size_data3[block+1:block+blocks+1]
                                                                                     Zeroes5=size_data3[block:block+blocks]
                                                                                     size_after2=len(Zeroes5)
-                                                                                    if block_stop>=block:                                                                                        
-                                                                                                                                                                                 Zeroes10=size_data3[block:block+blocks]
+                                                                                    if block_stop==block_stop2:                                                                                        
+                                                                                                                                                                                 Zeroes10=size_data3[block:]
                                                                                                                                                                                  size_data4=Zeroes10
-                                                                                                                                                                                 block=block+blocks
+                                                                                                                                                                                 block=block+len(size_data4)
+                                                                                                                                                                                 print(block_stop)
+                                                                                                                                                                                 print(block_stop2)
 
-                                                                                    elif Zeroes[0:1]=="0" and block_stop<block:
-                                                                                        Zeroes10=size_data3[block:block+blocks]
+                                                                                    elif Zeroes[0:1]=="0" and block_stop>=block_stop2:
+                                                                                        Zeroes10=size_data3[block:block+16]
+                                                                                        block_stop2=block_stop2+1
+                                                                                        
                                                                                         size_data4=Zeroes10
                                                                                                                                                                                  	
-                                                                                        block=block+blocks
+                                                                                        block=block+len(size_data4)
                                                                                         
-                                                                                    elif Zeroes[0:2]=="10" and block_stop<block:
+                                                                                    elif Zeroes[0:2]=="10" and block_stop>=block_stop2:
                                                                                         block=block+2
+                                                                                        block_stop2=block_stop2+1
                                                                                     
                                                                                         size_of_block=len(Zeroes)
                                                                                         #print(size_of_block)
@@ -877,7 +888,7 @@ class compression:
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
                                                                                         Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
-                                                                                        Times_extract_of_time_zeroes="11"+Times_extract_of_time_zeroes
+                                                                                        Times_extract_of_time_zeroes="00"+Times_extract_of_time_zeroes
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
                                                                                         
@@ -934,9 +945,10 @@ class compression:
                                                                                                                                    	
                                                                                         
 
-                                                                                    elif Zeroes[0:2]=="11" and block_stop<block:
+                                                                                    elif Zeroes[0:2]=="11" and block_stop>=block_stop2:
                                                                                     
                                                                                         block=block+2
+                                                                                        block_stop2=block_stop2+1
                                                                                     
                                                                                         size_of_block=len(Zeroes)
                                                                                         #print(size_of_block)
@@ -949,7 +961,7 @@ class compression:
                                                                                         Times_extract_of_time_zeroes=""
                                                                                         
                                                                                         Times_extract_of_time_zeroes=size_data3[block:block+(Size_max_zeroes-2)]
-                                                                                        Times_extract_of_time_zeroes="11"+Times_extract_of_time_zeroes
+                                                                                        Times_extract_of_time_zeroes="00"+Times_extract_of_time_zeroes
                                                                                         #print(Times_extract_of_time_zeroes)
                                                                                         
                                                                                         times_of_times=int(Times_extract_of_time_zeroes,2)
